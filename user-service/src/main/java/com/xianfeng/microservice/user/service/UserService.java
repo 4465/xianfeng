@@ -29,4 +29,8 @@ public class UserService {
     public Integer deleteUserByUid(List<String> uids){
         return userDao.deleteUserByUid(uids);
     }
+
+    public String login(User user){
+        return userDao.login(user);
+    }
 }

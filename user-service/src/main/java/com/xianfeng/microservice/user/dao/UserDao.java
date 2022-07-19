@@ -22,4 +22,6 @@ public interface UserDao {
 
     public Integer deleteUserByUid(List<String> uids);
 
+    public String login(User user);
+
 }

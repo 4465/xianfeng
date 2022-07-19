@@ -49,5 +49,9 @@
             </foreach>
 
     </delete>
+
+    <select id="login" parameterType="com.xianfeng.microservice.user.entity.User" resultType="java.lang.String">
+        select password from t_user where userName = #{userName}
+    </select>
     
 </mapper>

@@ -131,4 +131,30 @@ public class UserController {
         }
         return wrapper;
     }
+
+    @ApiOperation(value = "用户登录", notes = "根据用户的用户名和密码登录")
+    @RequestMapping(value = "/user/login", method = RequestMethod.POST)
+    public Wrapper<Map<String, Object>> login(@RequestBody User user){
+        Wrapper wrapper = new Wrapper();
+
+        logger.info(user.toString());
+
+
+        try{
+            String pass = userService.login(user);
+            if(pass.equals(MD5Util.encoder(user.getPassword()))){
+                wrapper.setCode(0);
+                wrapper.setMessage("密码正确");
+            }else{
+                wrapper.setCode(999);
+                wrapper.setMessage("密码cuo");
+            }
+        }catch (Exception e){
+            logger.error("" + e);
+            wrapper.setCode(999);
+            wrapper.setMessage("登录失败");
+        }
+
+        return wrapper;
+    }
 }
